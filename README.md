@@ -2,6 +2,12 @@
 
 React hook for entering a PIN code.
 
+<div align="center">
+  <a href="https://www.npmjs.com/package/react-pin-input-hook">
+    <img src="pin-input.gif" width="346" alt="react-pin-input-hook" />
+  </a>
+</div>
+
 ## Installation
 
 ```
@@ -68,10 +74,10 @@ function Component() {
 
 | Prop          | Type                                           | Default             | Description                                                                                                                                    |
 | ------------- | ---------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| values        | string[]                                       |                     | Field values. If no values are passed, the default value defined in `defaultValues` is used.                                                   |
-| onChange      | (values: string[]) => void                     |                     | The function is called every time the value changes.                                                                                           |
-| onComplete    | (value: string) => void                        |                     | The function is called when all fields are filled in.                                                                                          |
-| actionRef     | React.Ref<[PinInputActions](#PinInputActions)> |                     | A reference to imperative actions.                                                                                                             |
+| values        | string[]                                       | -                   | Field values. If no values are passed, the default value defined in `defaultValues` is used.                                                   |
+| onChange      | (values: string[]) => void                     | -                   | The function is called every time the value changes.                                                                                           |
+| onComplete    | (value: string) => void                        | -                   | The function is called when all fields are filled in.                                                                                          |
+| actionRef     | React.Ref<[PinInputActions](#PinInputActions)> | -                   | A reference to imperative actions.                                                                                                             |
 | autoFocus     | boolean                                        | false               | Automatic focus setting at the first mount, is set to the first field.                                                                         |
 | defaultValues | string[]                                       | ['','','','','',''] | In the case when the component is unmanaged, default values are set, where the number of values in the array is equal to the number of fields. |
 | type          | 'numeric' or 'alphanumeric'                    | 'numeric'           | Changes the type of keyboard display on mobile devices.                                                                                        |
@@ -85,8 +91,8 @@ function Component() {
 
 | Prop      | Type                                        | Default          | Description                                                                                                                                         |
 | --------- | ------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| fields    | [PinInputFieldProps](#PinInputFieldProps)[] |                  | An array of objects with attributes.                                                                                                                |
-| isFocused | boolean                                     |                  | Whether the focus was set on any field.                                                                                                             |
+| fields    | [PinInputFieldProps](#PinInputFieldProps)[] | -                | An array of objects with attributes.                                                                                                                |
+| isFocused | boolean                                     | -                | Whether the focus was set on any field.                                                                                                             |
 | clear     | (options?: { focus?: boolean }) => void     | { focus: false } | Sets the initial values of the fields. Removes focus by default. The parameter can be passed `{ focus: true }` to set the focus on the first field. |
 
 ## PinInputFieldProps
