@@ -1,6 +1,6 @@
 {
   "name": "react-pin-input-hook",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React hook for entering a PIN code",
   "source": "src/index.ts",
   "main": "dist/index.js",
