@@ -1,0 +1,72 @@
+{
+  "name": "react-pin-input-hook",
+  "version": "1.0.0",
+  "description": "React hook for entering a PIN code",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "esmodule": "dist/index.modern.js",
+  "umd:main": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "microbundle",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --ext .js,.ts --fix",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "author": "Klyshnikov Roman <klyshnikov.roman@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.38",
+    "@types/react": "^18.0.10",
+    "@types/react-dom": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "husky": "^8.0.1",
+    "microbundle": "^0.15.0",
+    "prettier": "^2.6.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "typescript": "^4.7.2"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8",
+    "react-dom": ">= 16.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KlyshnikovRoman/react-pin-input-hook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KlyshnikovRoman/react-pin-input-hook/issues"
+  },
+  "homepage": "https://github.com/KlyshnikovRoman/react-pin-input-hook#readme",
+  "keywords": [
+    "react",
+    "hooks",
+    "hook",
+    "react-hooks",
+    "pin",
+    "code",
+    "pin-input",
+    "pin-code",
+    "verify-code",
+    "typescript"
+  ],
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.ts": "tsc --noEmit",
+    "*.md": "prettier --write"
+  }
+}
