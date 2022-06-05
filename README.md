@@ -37,8 +37,8 @@ function Component() {
 
   return (
     <div className='pin-input'>
-      {fields.map((propsField, index) => (
-        <input key={index} className='pin-input__field' {...propsField} />
+      {fields.map((fieldProps, index) => (
+        <input key={index} className='pin-input__field' {...fieldProps} />
       ))}
     </div>
   )
@@ -62,8 +62,8 @@ function Component() {
 
   return (
     <div className='pin-input'>
-      {fields.map((propsField, index) => (
-        <input key={index} className='pin-input__field' {...propsField} />
+      {fields.map((fieldProps, index) => (
+        <input key={index} className='pin-input__field' {...fieldProps} />
       ))}
     </div>
   )
@@ -97,26 +97,26 @@ function Component() {
 
 ## PinInputFieldProps
 
-| Prop         | Type                                                 | Descriptions                                                                                   |
-| ------------ | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| ref          | React.RefCallback<HTMLInputElement>                  | Returns a callback function to register the field.                                             |
-| value        | string                                               | Returns the value of the field.                                                                |
-| disabled     | boolean                                              | Returns the value passed by the `disabled` parameter.                                          |
-| autoComplete | 'one-time-code' or 'off'                             | Returns either `one-time-code` if the parameter `otp: true` was passed, otherwise `off`.       |
-| inputMode    | 'text' or 'numeric'                                  | Returns either `text` if the parameter `type: 'alphanumeric'` was passed, otherwise `numeric`. |
-| type         | 'text' or 'password'                                 | Returns either `password` if the `mask: true` parameter was passed, or `text`.                 |
-| placeholder  | string                                               | Returns the value passed by the `placeholder` parameter if there are no focused fields.        |
-| onBlur       | (event: React.FocusEvent<HTMLInputElement>) => void  | Returns the handler for the focus loss event if `disabled: false`.                             |
-| onFocus      | (event: React.FocusEvent<HTMLInputElement>) => void  | Returns the handler for the focus appearance event if `disabled: false`.                       |
-| onChange     | (event: React.ChangeEvent<HTMLInputElement>) => void | Returns a handler for the field change event if `disabled: false`.                             |
-| onKeyDown    | (event: React.ChangeEvent<HTMLInputElement>) => void | Returns a handler for the keystroke event if `disabled: false`.                                |
+| Prop         | Type                                                   | Descriptions                                                                                   |
+| ------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| ref          | React.RefCallback<HTMLInputElement>                    | Returns a callback function to register the field.                                             |
+| value        | string                                                 | Returns the value of the field.                                                                |
+| disabled     | boolean                                                | Returns the value passed by the `disabled` parameter.                                          |
+| autoComplete | 'one-time-code' or 'off'                               | Returns either `one-time-code` if the parameter `otp: true` was passed, otherwise `off`.       |
+| inputMode    | 'text' or 'numeric'                                    | Returns either `text` if the parameter `type: 'alphanumeric'` was passed, otherwise `numeric`. |
+| type         | 'text' or 'password'                                   | Returns either `password` if the `mask: true` parameter was passed, or `text`.                 |
+| placeholder  | string                                                 | Returns the value passed by the `placeholder` parameter if there are no focused fields.        |
+| onBlur       | (event: React.FocusEvent<HTMLInputElement>) => void    | Returns the handler for the focus loss event if `disabled: false`.                             |
+| onFocus      | (event: React.FocusEvent<HTMLInputElement>) => void    | Returns the handler for the focus appearance event if `disabled: false`.                       |
+| onChange     | (event: React.ChangeEvent<HTMLInputElement>) => void   | Returns a handler for the field change event if `disabled: false`.                             |
+| onKeyDown    | (event: React.KeyboardEvent<HTMLInputElement>) => void | Returns a handler for the keystroke event if `disabled: false`.                                |
 
 ## PinInputActions
 
 | Name  | Type                     | Description                                                                                                                                                                                                                                                                |
 | ----- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | blur  | () => void               | Imperative function call to lose focus.                                                                                                                                                                                                                                    |
-| focus | (index?: number) => void | Imperative function call to set focus on the first empty field. In the case when `error: true`. the focus is set to the first empty field. The argument takes an optional parameter in the form of a number (ordinal index), which will set the focus on a specific field. |
+| focus | (index?: number) => void | Imperative function call to set focus on the first empty field. In the case when `error: true`, the focus is set to the first empty field. The argument takes an optional parameter in the form of a number (ordinal index), which will set the focus on a specific field. |
 
 ### Example
 
@@ -136,11 +136,13 @@ function Component() {
   })
 
   const onSubmit = () => {
-    // Check if there is at least one empty field. If there is, the input is considered empty.
+    // Check if there is at least one empty field. If there is,
+    // the input is considered empty.
     if (values.includes('')) {
       // Setting the error.
       setError(true)
-      // We set the focus on the first empty field if `error: true` was passed as a parameter in `options`.
+      // We set the focus on the first empty field if `error: true`
+      // was passed as a parameter in `options`.
       actionRef.current?.focus()
     }
   }
@@ -148,8 +150,8 @@ function Component() {
   return (
     <form>
       <div className='pin-input'>
-        {fields.map((propsField, index) => (
-          <input key={index} className='pin-input__field' {...propsField} />
+        {fields.map((fieldProps, index) => (
+          <input key={index} className='pin-input__field' {...fieldProps} />
         ))}
       </div>
       <button onClick={onSubmit}>Submit</button>
