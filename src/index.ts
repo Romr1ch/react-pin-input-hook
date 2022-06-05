@@ -8,7 +8,9 @@ export interface PinInputActions {
    */
   blur: () => void
   /**
-   * Imperative function call to set focus on the first empty field. In the case when `error: true'. the focus is set to the first empty field. The argument takes an optional parameter in the form of a number (ordinal index), which will set the focus on a specific field.
+   * Imperative function call to set focus on the first empty field. In the case when `error: true`,
+   * the focus is set to the first empty field. The argument takes an optional parameter in the form
+   * of a number (ordinal index), which will set the focus on a specific field.
    * @param {number} index
    */
   focus: (index?: number) => void
@@ -38,7 +40,8 @@ export interface UsePinInputProps {
    */
   autoFocus?: boolean
   /**
-   * In the case when the component is unmanaged, default values are set, where the number of values in the array is equal to the number of fields.
+   * In the case when the component is unmanaged, default values are set, where the number of values
+   * in the array is equal to the number of fields.
    */
   defaultValues?: PinInputValues
   /**
@@ -46,7 +49,8 @@ export interface UsePinInputProps {
    */
   type?: 'numeric' | 'alphanumeric'
   /**
-   * If `true', then the attribute `autocomplete="one-time-code"` is added, otherwise `autocomplete="off"`.
+   * If `true', then the attribute `autocomplete="one-time-code"` is added, otherwise
+   * `autocomplete="off"`.
    */
   otp?: boolean
   /**
@@ -54,7 +58,8 @@ export interface UsePinInputProps {
    */
   placeholder?: string
   /**
-   * If `true`, the transmission of event handlers `onChange`, `onBlur`, `onFocus` and `onKeyDown` in the parameters of each field is prevented.
+   * If `true`, the transmission of event handlers `onChange`, `onBlur`, `onFocus` and `onKeyDown`
+   * in the parameters of each field is prevented.
    */
   disabled?: boolean
   /**
