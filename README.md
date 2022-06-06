@@ -4,6 +4,15 @@ React hook for entering a PIN code.
 
 <div align="center">
   <a href="https://www.npmjs.com/package/react-pin-input-hook">
+    <img alt="npm" src="https://img.shields.io/npm/v/react-pin-input-hook.svg" />
+  </a>
+  <a href="https://npmjs.org/package/react-pin-input-hook">
+    <img alt="downloads" src="https://badgen.net/npm/dm/react-pin-input-hook" />
+  </a>
+</div>
+<br />
+<div align="center">
+  <a href="https://www.npmjs.com/package/react-pin-input-hook">
     <img src="pin-input.gif" width="346" alt="react-pin-input-hook" />
   </a>
 </div>
