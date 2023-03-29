@@ -112,22 +112,22 @@ export interface PinInputFieldProps {
    * Returns the handler for the focus loss event if `disabled: false`.
    * @param {React.FocusEvent<HTMLInputElement>} event
    */
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: React.FocusEventHandler<HTMLInputElement>
   /**
    * Returns the handler for the focus appearance event if `disabled: false`.
    * @param {React.FocusEvent<HTMLInputElement>} event
    */
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onFocus?: React.FocusEventHandler<HTMLInputElement>
   /**
    * Returns a handler for the field change event if `disabled: false`.
    * @param {React.ChangeEvent<HTMLInputElement>} event
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
   /**
    * Returns a handler for the keystroke event if `disabled: false`.
    * @param {React.KeyboardEvent<HTMLInputElement>} event
    */
-  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
 }
 
 export function usePinInput({
@@ -199,73 +199,75 @@ export function usePinInput({
   )
 
   const onChange = React.useCallback(
-    (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      let { value } = event.target
+    (index: number): React.ChangeEventHandler<HTMLInputElement> =>
+      (event) => {
+        let { value } = event.target
 
-      value = value.trim()
+        value = value.trim()
 
-      const regexType = isTypeAlphanumeric ? /^[a-z\d]*$/i : /^\d*$/
+        const regexType = isTypeAlphanumeric ? /^[a-z\d]*$/i : /^\d*$/
 
-      if (!regexType.test(value)) {
-        return
-      }
-
-      if (isTypeAlphanumeric) {
-        value = value.toUpperCase()
-      }
-
-      if (value.length > 2) {
-        if (value.length === values.length) {
-          updateValues(value.split(''))
-          onComplete?.(value)
-        }
-
-        return
-      }
-
-      if (value.length === 2) {
-        const currentValue = values[index]
-
-        if (currentValue === value[0]) {
-          value = value[1]
-        } else if (currentValue === value[1]) {
-          value = value[0]
-        } else {
+        if (!regexType.test(value)) {
           return
         }
-      }
 
-      const nextValues = values.slice()
-      nextValues[index] = value
-      updateValues(nextValues)
-
-      if (value) {
-        if (!nextValues.includes('')) {
-          onComplete?.(nextValues.join(''))
+        if (isTypeAlphanumeric) {
+          value = value.toUpperCase()
         }
 
-        if (index !== values.length - 1) {
-          if (error) {
-            const emptyFieldIndex = nextValues.findIndex((v) => !v)
+        if (value.length > 2) {
+          if (value.length === values.length) {
+            updateValues(value.split(''))
+            onComplete?.(value)
+          }
 
-            if (emptyFieldIndex !== -1) {
-              setFocus(emptyFieldIndex)
-            }
+          return
+        }
+
+        if (value.length === 2) {
+          const currentValue = values[index]
+
+          if (currentValue === value[0]) {
+            value = value[1]
+          } else if (currentValue === value[1]) {
+            value = value[0]
           } else {
-            setFocus(index + 1)
+            return
           }
         }
-      }
-    },
+
+        const nextValues = values.slice()
+        nextValues[index] = value
+        updateValues(nextValues)
+
+        if (value) {
+          if (!nextValues.includes('')) {
+            onComplete?.(nextValues.join(''))
+          }
+
+          if (index !== values.length - 1) {
+            if (error) {
+              const emptyFieldIndex = nextValues.findIndex((v) => !v)
+
+              if (emptyFieldIndex !== -1) {
+                setFocus(emptyFieldIndex)
+              }
+            } else {
+              setFocus(index + 1)
+            }
+          }
+        }
+      },
     [isTypeAlphanumeric, values, updateValues, onComplete, setFocus, error]
   )
 
   const onKeyDown = React.useCallback(
-    (index: number) => (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Backspace' && !values[index] && index) {
-        setFocus(index - 1)
-      }
-    },
+    (index: number): React.KeyboardEventHandler<HTMLInputElement> =>
+      (event) => {
+        if (event.key === 'Backspace' && !values[index] && index) {
+          setFocus(index - 1)
+        }
+      },
     [values, setFocus]
   )
 
